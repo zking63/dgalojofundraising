@@ -1,5 +1,7 @@
 # Lojo Fundraising
+![Search](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/search.gif "Search gif")
 Lojo Fundraising is a data analytics site for digital fundraising emails. It takes in email performance and fundraising data and calculates key metrics. It allows users to perform advanced custom searches to group emails based on content, type, and a variety of other attributes, as well as sort emails based on metrics.
+![Search](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/search.gif "Search gif")
 <h2>Features</h2>
 ![Search](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/search.gif "Search gif")
 <ul style="margin: 0px; font-size: 20px; text-align: left;margin-bottom: 0em; margin-top: 0em;margin-left: 0em;margin-right: 0em;">

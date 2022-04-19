@@ -22,5 +22,5 @@ KEY APIs: JPA Criteria API | Apache POI API | Java Mail API | Java Persistence A
 TOOLS: Spring Tool Suite | MySQL Workbench
 
 
-![Search](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/search.gif "Search gif")
+
 ![Exports](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/export.gif "Export gif")

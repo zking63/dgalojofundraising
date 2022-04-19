@@ -6,7 +6,7 @@ Lojo Fundraising is a data analytics site for digital fundraising emails. It tak
 * Imports and reads Excel documents with performance and fundraising data to create Java objects (fundraising emails) and stores them in a MySQL database
 * Custom search function to query fundraising emails based on user-generated data, providing the ability to group emails by topic, analyze performance, and optimize fundraising strategy [(see demo below)](#Search)
 * Responsive U.I. built with JavaScript, CSS, and HTML5							
-* Builds reports using search functionality and allows users to export them to Excel and Word (see demo below)						
+* Builds reports using search functionality and allows users to export them to Excel and Word [(see demo below)](#Export)						
 
 ## Technologies
 FRONT END: HTML5 | CSS | JavaScript | Bootstrap | JSP

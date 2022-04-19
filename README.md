@@ -2,7 +2,7 @@
 Lojo Fundraising is a data analytics site for digital fundraising emails. It takes in email performance and fundraising data and calculates key metrics. It allows users to perform advanced custom searches to group emails based on content, type, and a variety of other attributes, as well as sort emails based on metrics.
 
 ## Author
-#### Zoe King | Software Developer | Digital Strategist 
+#### Zoe King | Software Developer | Digital Strategist
 ##### Contact: [GitHub](https://github.com/zking63) | <zoemking63@gmail.com> | [LinkedIn](https://www.linkedin.com/in/zoe-king-9a730b12b/)
 
 ## Features

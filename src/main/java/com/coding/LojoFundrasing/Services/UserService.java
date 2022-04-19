@@ -89,7 +89,7 @@ public class UserService {
         props.setProperty("mail.transport.protocol", "smtp");
         
     	
-        String fromEmail = "zingsubs@gmail.com";
+        final String fromEmail = "zingsubs@gmail.com";
         String sender = "Fundraising";
         String subject = "Please verify your registration";
 

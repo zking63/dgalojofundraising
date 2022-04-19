@@ -10,7 +10,7 @@ Lojo Fundraising is a data analytics site for digital fundraising emails. It tak
 	<li style="margin: 0px; font-size: 20px; text-align: left;margin-bottom: 0em; margin-top: 0em;margin-left: 0em;margin-right: 0em;">Builds reports using search functionality and allows users to export them to Excel and Word (see demo below)</li>
 	</ul>
 							
-</br>
+
 
 <h2>Technologies</h2>
 FRONT END: HTML5 | CSS | JavaScript | Bootstrap | JSP</br>
@@ -18,7 +18,7 @@ BACK END: Java | MySQL | JPA | Hibernate</br>
 KEY APIs: JPA Criteria API | Apache POI API | Java Mail API | Java Persistence API</br>
 TOOLS: Spring Tool Suite | MySQL Workbench
 
-</br>
+
 
 <h2>Demos</h2>
 

@@ -24,5 +24,6 @@ TOOLS: Spring Tool Suite | MySQL Workbench
 </br>
 
 <h2>Demos</h2>
+
 ![Search](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/search.gif "Search gif") </br>
 ![Exports](https://github.com/zking63/dgalojofundraising/blob/master/src/main/resources/static/images/export.gif "Export gif")

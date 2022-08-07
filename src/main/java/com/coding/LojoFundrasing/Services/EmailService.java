@@ -207,6 +207,8 @@ public class EmailService {
 		System.out.println("email set up found");
 		//System.out.println("*****NAME " + nameValue);
 		//System.out.println("*****rev " + revenue);
+		System.out.println("*****refcode1 " + refcode);
+		System.out.println("*****refcode2 " + refcode2);
 		System.out.println("*****variant " + variant);
 		System.out.println("*****test " + testing);
 		System.out.println("*****category " + category);
@@ -337,6 +339,9 @@ public class EmailService {
 				else {
 					System.out.println("refcode2 != null && refcode != null");
 					email = findEmailbyRefcodeandCommittee(refcode, refcode2, committee);
+					if (email != null) {
+						System.out.println("                email: " + email.getEmailName());
+					}
 					refcodesFiled = true;
 				}
 			}
@@ -1009,7 +1014,7 @@ public class EmailService {
 		return erepo.findVariantAList(groupid, committee_id);
 	}
 	public Emails findVariantB(Long groupid, String list, Long committee_id) {
-		return erepo.findVariantB(groupid, list, committee_id);
+		return erepo.findVariantB(groupid, committee_id);
 	}
 	public Emails findVariantAprospects(Long groupid, Long committee_id) {
 		return erepo.findVariantAprospects(groupid, committee_id);

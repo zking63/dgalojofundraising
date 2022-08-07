@@ -2118,7 +2118,7 @@ public class LojoController {
 			 if (user_id == null) {
 				 return "redirect:/";
 			 }
-				if (user_id != 2 || user_id != 1) {
+				if (user_id != 2 && user_id != 1) {
 					 return "redirect:/emails";
 				 }
 			 User user = uservice.findUserbyId(user_id);
@@ -2136,7 +2136,7 @@ public class LojoController {
 			 if (user_id == null) {
 				 return "redirect:/";
 			 }
-				if (user_id != 2 || user_id != 1) {
+				if (user_id != 2 && user_id != 1) {
 					 return "redirect:/emails";
 				 }
 			 Long committee_id = (Long)session.getAttribute("committee_id");

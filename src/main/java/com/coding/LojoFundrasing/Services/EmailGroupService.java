@@ -95,6 +95,7 @@ public class EmailGroupService {
 		return group;
 	}
 	public void findorCreateEmailGroup(Emails email, Long committee_id, Date dateforgroup, String oldparentid) {
+		System.out.println("---------------------------------------IN EMAIL GROUP! ");
 		EmailGroup oldgroup = null;
 		if (oldparentid != null) {
 			System.out.println("oldparentid: " + oldparentid);
@@ -478,23 +479,28 @@ public void getEmailGroupTesting(Long emailGroupId, Long committee_id) {
 		}
 	}
 	else {
+		System.out.println("in the group test ");
 		if (emailgroup.getGroupTest() != null) {
 			testSet = true;
+			System.out.println("test set ");
 			variantA = emailgroup.getVariantA();
 			variantB = emailgroup.getVariantB();
 		}
 		else {
+			System.out.println("test not set ");
 			testSet = false;
 		}
 	}
 		//testing info
 		if (variantA == null || variantA.isEmpty() || variantA == " " ) {
+			System.out.println("variant a not set ");
 			variantASet = false;
 		}
 		else {
 			variantASet = true;
 		}
 		if (variantB == null || variantB.isEmpty() || variantB == " " ) {
+			System.out.println("variant b not set ");
 			variantBSet = false;
 		}
 		else {
@@ -503,8 +509,24 @@ public void getEmailGroupTesting(Long emailGroupId, Long committee_id) {
 		while (testSet == false) {
 			Emails emailA = erepo.findVariantA(emailgroup.getId(), committee_id);
 			Emails emailB = null;
+			String list = null;
 			if (emailA != null) {
-				emailB = erepo.findVariantB(emailgroup.getId(), emailA.getList(), committee_id);
+				if (emailA.getList().contains("rospect")) {
+					emailB = erepo.findVariantBprospects(emailgroup.getId(), committee_id);
+				}
+				else if (emailA.getList().contains("onor")) {
+					emailB = erepo.findVariantBdonors(emailgroup.getId(), committee_id);
+				}
+				else if (emailA.getList().contains("ull")) {
+					emailB = erepo.findVariantBfull(emailgroup.getId(), committee_id);
+				}
+				else {
+					emailB = erepo.findVariantB(emailgroup.getId(), committee_id);
+				}
+				System.out.println("email a found " + emailA.getId());
+				if (emailB != null) {
+					System.out.println("email b found " + emailB.getId());
+				}
 			}
 			if (emailA == null || emailB == null) {
 				variantASet = true;

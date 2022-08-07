@@ -55,22 +55,32 @@
 				<option name="field" value="0">Email groups</option>
 				<option name="field" value="1">Emails</option>
 		        <option name="field" value="6">Top 10 Report</option>
+		        <option name="field" value="7">Chair Report</option>
 			</c:when>
 			<c:when test="${ field == 1}">
 				<option name="field" value="1">Emails</option>
 		        <option name="field" value="6">Top 10 Report</option>
+		        <option name="field" value="7">Chair Report</option>
 		        <option name="field" value="0">Email groups</option>
 			</c:when>
 			<c:when test="${ field == 6}">
 				<option name="field" value="6">Top 10 Report</option>
+				<option name="field" value="7">Chair Report</option>
 				<option name="field" value="0">Email groups</option>
 				<option name="field" value="1">Emails</option>
+			</c:when>
+			<c:when test="${ field == 7}">
+				<option name="field" value="7">Chair Report</option>
+				<option name="field" value="0">Email groups</option>
+				<option name="field" value="1">Emails</option>
+				<option name="field" value="6">Top 10 Report</option>
 			</c:when>
 			<c:otherwise>
 				<option name="field" value="4">Select</option>
 				<option name="field" value="0">Email groups</option>
 				<option name="field" value="1">Emails</option>
 		        <option name="field" value="6">Top 10 Report</option>
+		        <option name="field" value="7">Chair Report</option>
 			</c:otherwise>
 		</c:choose>
 		</select>

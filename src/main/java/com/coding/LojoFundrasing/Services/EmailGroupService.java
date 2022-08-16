@@ -316,6 +316,7 @@ public class EmailGroupService {
 		Integer tandemdonations = egrepo.GroupTandemDonations(emailGroupId, committee_id);
 		//first time donors
 		Integer firsttimedonors = egrepo.GroupFirstTimeDonors(emailGroupId, committee_id);
+		Double firstrevenue = egrepo.GroupFirstRevenue(emailGroupId, committee_id);
 		//total revenue
 		Double totalrevenue = tandemrevenue + groupsum;
 		//rates
@@ -331,6 +332,7 @@ public class EmailGroupService {
 		Double groupdonorsClicks = 0.0;
 		Double firsttimedonorsOpens = 0.0;
 		Double firsttimedonorsClicks = 0.0;
+		Double averagefirstrevenue = 0.0;
 		
 		//donations for count
 		Integer donationsforcalculation = egrepo.GroupDonationsforCalculation(emailGroupId, committee_id);
@@ -361,11 +363,15 @@ public class EmailGroupService {
 		emailgroup.setGroupdonationcount(groupdonationcount);
 		emailgroup.setGroupRecurringDonationCount(groupRecurringDonationCount);
 		emailgroup.setGroupRecurringRevenue(groupRecurringRevenue);
+		emailgroup.setFirstrevenue(averagefirstrevenue);
 		updateEmailGroup(emailgroup);
 		
 		System.out.println("fundraising calculations in email group");
 		if (groupdonationcount != 0 && groupdonationcount != null) {
 			groupaverage = (double) totalrevenue/groupdonationcount;
+		}
+		if (firsttimedonors != 0 && firsttimedonors != null) {
+			averagefirstrevenue = (double) firstrevenue/firsttimedonors;
 		}
 		//calculate email performance + fundraising stats
 		if (groupOpeners != null && groupOpeners != 0) {
@@ -418,6 +424,7 @@ public class EmailGroupService {
 		//System.out.println("groupbounceRate" + groupbounceRate);
 		emailgroup.setFirsttimedonorsClicks(firsttimedonorsClicks);
 		emailgroup.setFirsttimedonorsOpens(firsttimedonorsOpens);
+		emailgroup.setAveragefirstrevenue(averagefirstrevenue);
 		updateEmailGroup(emailgroup);
 		//System.out.println("group updated");
 		if (emailgroup.getEmails().size() > 1) {

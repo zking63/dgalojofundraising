@@ -116,6 +116,10 @@ public interface EmailGroupRepo extends CrudRepository<EmailGroup, Long>, EmailG
 	@Query(value = "Select sum(firsttimedonors) from emails WHERE emailgroup_id = :groupid AND committees_id = :committee_id", nativeQuery = true)
 	Integer GroupFirstTimeDonors(@Param("groupid") Long groupid, Long committee_id);
 	
+	//group first time revenue count
+	@Query(value = "Select sum(firstrevenue) from emails WHERE emailgroup_id = :groupid AND committees_id = :committee_id", nativeQuery = true)
+	Double GroupFirstRevenue(@Param("groupid") Long groupid, Long committee_id);
+	
 	//group average revenue (per donation)
 	//@Query(value = "Select AVG(donations.amount) from donations left join emails on donations.email_id = emails.id WHERE emails.emailgroup_id = :groupid AND emails.committees_id = :committee_id AND donations.committees_id = :committee_id", nativeQuery = true)
 	//Double GroupAveragePerDonation(@Param("groupid") Long groupid, Long committee_id);

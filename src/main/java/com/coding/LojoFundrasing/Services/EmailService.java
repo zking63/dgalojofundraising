@@ -203,7 +203,7 @@ public class EmailService {
 			Date date, Committees committee, String sender, String subject, String category, 
 			String content, Integer tandemdonations, Double tandemrev, String parentid,
 			String testing, String variant, String link, Double revenue, Double recurringrev, 
-			Integer donations, Integer recurringdonations, Date dateforgroup, Integer rowNumber) {
+			Integer donations, Integer recurringdonations, Date dateforgroup, Integer firsttimedonors, Integer rowNumber) {
 		System.out.println("email set up found");
 		//System.out.println("*****NAME " + nameValue);
 		//System.out.println("*****rev " + revenue);
@@ -231,6 +231,9 @@ public class EmailService {
 		}
 		if (revenue == null) {
 			revenue = 0.0;
+		}
+		if (firsttimedonors == null) {
+			firsttimedonors = 0;
 		}
 		
 		if (donations == null) {
@@ -410,6 +413,7 @@ public class EmailService {
         	email.setTandemdonations(tandemdonations);
         	email.setTandemrevenue(tandemrev);
         	email.setContent(content);
+        	email.setFirsttimedonors(firsttimedonors);
         	createEmail(email);
         	while (committeeSetList == false) {
     			if (committee.getBigtest() == null || committee.getEmails().size() == 0) {
@@ -564,6 +568,11 @@ public class EmailService {
 					tandemdonations = email.getTandemdonations();
 				}
 			}
+			if (email.getFirsttimedonors() != null && email.getFirsttimedonors() != 0) {
+				if (firsttimedonors == null ||firsttimedonors == 0) {
+					firsttimedonors = email.getFirsttimedonors();
+				}
+			}
 			if (email.getTandemrevenue() != null && email.getTandemrevenue() != 0.0) {
 				if (tandemrev == null || tandemrev == 0.0) {
 					tandemrev = email.getTandemrevenue();
@@ -608,6 +617,7 @@ public class EmailService {
         	email.setRecurringRevenue(recurringrev);
         	email.setEmaildonationsum(revenue);
         	email.setEmaildonationcount(donations);
+        	email.setFirsttimedonors(firsttimedonors);
         	updateEmail(email);
 		}
     	while (LinkSetList == false) {
@@ -647,6 +657,7 @@ public class EmailService {
 		Double esum = email.getEmaildonationsum();
 		Double eaverage = 0.00;
 		Integer donationscount = email.getEmaildonationcount();
+		Integer firsttimedonors = email.getFirsttimedonors();
 		Integer donorscount = 0;
 		Integer recurringDonorCount = 0;
 		Integer recurringDonationCount = email.getRecurringDonationCount();
@@ -660,6 +671,8 @@ public class EmailService {
 		Double donorsOpens = 0.00;
 		Double donorsClicks = 0.00;
 		Double clicksOpens = 0.00;
+		Double firsttimedonorsOpens = 0.00;
+		Double firsttimedonorsClicks = 0.00;
 		Integer tandemdonations = email.getTandemdonations();
 		Integer donationsforcalculation = donationscount;
 		Double totalrevenue = email.getTandemrevenue() + email.getEmaildonationsum();
@@ -687,12 +700,14 @@ public class EmailService {
 			if (email.getClicks() != null && email.getClicks() != 0) {
 				donationsClicks = donationsforcalculation/clicks;
 				donorsClicks = donorscount/clicks;
+				firsttimedonorsClicks = firsttimedonors/clicks;
 			}
 			if (email.getOpeners() != null && email.getOpeners() != 0) {
 				unsubscribeRate = unsubs/opens;
 				clicksOpens = clicks/opens;
 				donationsOpens = donationsforcalculation/opens;
 				donorsOpens = donorscount/opens;
+				firsttimedonorsOpens = firsttimedonors/opens;
 			}
 			email.setEmaildonationaverage(eaverage);
 			email.setEmaildonationsum(esum);
@@ -712,6 +727,8 @@ public class EmailService {
 			email.setEmaildonorsOpens(donorsOpens);
 			email.setEmaildonorsClicks(donorsClicks);
 			email.setTotalrevenue(totalrevenue);
+			email.setFirsttimedonorsClicks(firsttimedonorsClicks);
+			email.setFirsttimedonorsOpens(firsttimedonorsOpens);
 			email.setDonationsforcalculation(donationsforcalculation);
 			erepo.save(email);
     		if (email.getEmailgroup() != null) {

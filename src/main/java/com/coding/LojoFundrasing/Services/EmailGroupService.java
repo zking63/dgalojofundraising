@@ -314,6 +314,8 @@ public class EmailGroupService {
 		//tandem
 		Double tandemrevenue = egrepo.GroupTandemRevenue(emailGroupId, committee_id);
 		Integer tandemdonations = egrepo.GroupTandemDonations(emailGroupId, committee_id);
+		//first time donors
+		Integer firsttimedonors = egrepo.GroupFirstTimeDonors(emailGroupId, committee_id);
 		//total revenue
 		Double totalrevenue = tandemrevenue + groupsum;
 		//rates
@@ -327,6 +329,8 @@ public class EmailGroupService {
 		Double groupclicksOpens = 0.0;
 		Double groupdonorsOpens = 0.0;
 		Double groupdonorsClicks = 0.0;
+		Double firsttimedonorsOpens = 0.0;
+		Double firsttimedonorsClicks = 0.0;
 		
 		//donations for count
 		Integer donationsforcalculation = egrepo.GroupDonationsforCalculation(emailGroupId, committee_id);
@@ -351,6 +355,7 @@ public class EmailGroupService {
 		emailgroup.setDonationsforcalculation(donationsforcalculation);
 		emailgroup.setTandemdonations(tandemdonations);
 		emailgroup.setTandemrevenue(tandemrevenue);
+		emailgroup.setFirsttimedonors(firsttimedonors);
 		
 		emailgroup.setGroupsum(groupsum);
 		emailgroup.setGroupdonationcount(groupdonationcount);
@@ -367,9 +372,11 @@ public class EmailGroupService {
 			groupclicksOpens = (double) groupClicks/groupOpeners;
 			groupdonationsOpens = (double) groupdonationcount/groupOpeners;
 			groupunsubscribeRate = (double) groupUnsubscribers/groupOpeners;
+			firsttimedonorsOpens = (double) firsttimedonors/groupOpeners;
 		}
 		if (groupClicks != null && groupClicks != 0) {
 			groupdonationsClicks = (double) groupdonationcount/groupClicks;
+			firsttimedonorsClicks = (double) firsttimedonors/groupClicks;
 		}
 		System.out.println("past fundraising calculations in email group");
 		//calculate email performance stats
@@ -409,6 +416,8 @@ public class EmailGroupService {
 		//System.out.println("groupunsubscribeRate" + groupunsubscribeRate);
 		emailgroup.setGroupbounceRate(groupbounceRate);
 		//System.out.println("groupbounceRate" + groupbounceRate);
+		emailgroup.setFirsttimedonorsClicks(firsttimedonorsClicks);
+		emailgroup.setFirsttimedonorsOpens(firsttimedonorsOpens);
 		updateEmailGroup(emailgroup);
 		//System.out.println("group updated");
 		if (emailgroup.getEmails().size() > 1) {

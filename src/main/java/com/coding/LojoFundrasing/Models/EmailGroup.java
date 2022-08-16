@@ -61,6 +61,11 @@ public class EmailGroup {
 	private String fullsendvariantdonors;
 	private String fullsendvariantprospects;
 	private Long fullsendemail;
+	private Integer firsttimedonors;
+	private Double firsttimedonorsOpens;
+	private Double firsttimedonorsClicks;
+	private Double firstrevenue;
+	private Double averagefirstrevenue;
 	@Column(updatable=false)
 	private Date createdAt;
 	private Date updatedAt;
@@ -528,6 +533,36 @@ public class EmailGroup {
 	}
 	public void setFullsendemail(Long fullsendemail) {
 		this.fullsendemail = fullsendemail;
+	}
+	public Integer getFirsttimedonors() {
+		return firsttimedonors;
+	}
+	public void setFirsttimedonors(Integer firsttimedonors) {
+		this.firsttimedonors = firsttimedonors;
+	}
+	public Double getFirsttimedonorsOpens() {
+		return firsttimedonorsOpens;
+	}
+	public void setFirsttimedonorsOpens(Double firsttimedonorsOpens) {
+		this.firsttimedonorsOpens = firsttimedonorsOpens;
+	}
+	public Double getFirsttimedonorsClicks() {
+		return firsttimedonorsClicks;
+	}
+	public void setFirsttimedonorsClicks(Double firsttimedonorsClicks) {
+		this.firsttimedonorsClicks = firsttimedonorsClicks;
+	}
+	public Double getFirstrevenue() {
+		return firstrevenue;
+	}
+	public void setFirstrevenue(Double firstrevenue) {
+		this.firstrevenue = firstrevenue;
+	}
+	public Double getAveragefirstrevenue() {
+		return averagefirstrevenue;
+	}
+	public void setAveragefirstrevenue(Double averagefirstrevenue) {
+		this.averagefirstrevenue = averagefirstrevenue;
 	}
 	
 }

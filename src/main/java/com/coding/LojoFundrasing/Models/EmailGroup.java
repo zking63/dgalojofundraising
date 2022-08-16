@@ -469,6 +469,16 @@ public class EmailGroup {
 		String revenue = myFormat.format(number);
 		return revenue;
 	}
+	public String getGroupDonationCountFormatted() {
+		Integer number = this.groupdonationcount;
+		if (number == null) {
+			number = 0;
+		}
+		NumberFormat myFormat = NumberFormat.getInstance();
+		myFormat.setGroupingUsed(true);
+		String donations = myFormat.format(number);
+		return donations;
+	}
 	public String getRecurringRevenueFormatted() {
 		Double number = this.groupRecurringRevenue;
 		if (number == null) {

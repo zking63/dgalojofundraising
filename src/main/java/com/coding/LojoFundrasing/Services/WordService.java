@@ -44,4 +44,20 @@ public class WordService {
         wordutil.MonthlyTop10Bottom10(top10GO, top10revenue, bottom10GO, bottom10revenue, response);
     
     }
+    public void exportChairReport(List<EmailGroup> ChairReportEmails, 
+    		HttpServletResponse response) throws IOException, InvalidFormatException {
+    	System.out.println("word service");
+        response.setContentType("application/octet-stream");
+        //MediaType.APPLICATION_JSON
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH");
+        String currentDateTime = dateFormatter.format(new Date());
+         
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=ChairReport_" + currentDateTime + ".docx";
+        response.setHeader(headerKey, headerValue);
+        String word = "hello world";
+        
+        wordutil.ChairReport(ChairReportEmails, response);
+    
+    }
 }

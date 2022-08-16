@@ -1990,6 +1990,11 @@ public class LojoController {
 				 List<EmailGroup> bottom10GO= egservice.bottom10byGO(startdateD, enddateD, committee_id);
 				 wservice.exportWord(top10GO, top10revenue, bottom10GO, bottom10revenue, response);
 			 }
+			 else if (field == 7) {
+				 System.out.println("Chair Report");
+				 List<EmailGroup> ChairReportEmails = egservice.getChairReport(startdateD, enddateD, committee_id);
+				 wservice.exportChairReport(ChairReportEmails, response);
+			 }
 			 model.addAttribute("startdateD", startdateD);
 			 model.addAttribute("type", type);
 			 model.addAttribute("enddateD", enddateD);

@@ -94,6 +94,7 @@ public class EmailGroupService {
 		EmailGroup group = egrepo.findbyIdandCommittee(id, committee_id);
 		return group;
 	}
+
 	public void findorCreateEmailGroup(Emails email, Long committee_id, Date dateforgroup, String oldparentid) {
 		System.out.println("---------------------------------------IN EMAIL GROUP! ");
 		EmailGroup oldgroup = null;
@@ -1505,6 +1506,15 @@ public void getEmailGroupTesting(Long emailGroupId, Long committee_id) {
 	public List<EmailGroup> bottom10byGO(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
 	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE, Long committee_id){
 		List<EmailGroup> emailgroups = egrepo.bottom10byGO(startdateE, enddateE, committee_id);
+		return emailgroups;
+	}
+	public List<EmailGroup> getChairReport(@Param("startdateE") @DateTimeFormat(pattern ="yyyy-MM-dd") String startdateE, @Param("enddateE") 
+	@DateTimeFormat(pattern ="yyyy-MM-dd") String enddateE, Long committee_id){
+		List<EmailGroup> emailgroups = egrepo.getChairReport(startdateE, enddateE, committee_id);
+		for (int i =0;i < emailgroups.size(); i++) {
+			System.out.println(emailgroups.get(i).getEmailgroupName() + " " + emailgroups.get(i).getGroupsum() + " " + emailgroups.get(i).getTandemrevenue() + " " + emailgroups.get(i).getTotalrevenue());
+		}
+		
 		return emailgroups;
 	}
 	/*public void SortEmailsandEmailGroupsId(String startdate, String enddate, Long committee_id){

@@ -106,10 +106,13 @@ public class UserService {
  		Authenticator auth = new Authenticator() {
  			//override the getPasswordAuthentication method
  			protected PasswordAuthentication getPasswordAuthentication() {
+ 				System.out.println("password: " + environment.getProperty("mypassword"));
  				return new PasswordAuthentication(fromEmail, environment.getProperty("mypassword"));
  			}
  		};
+ 		System.out.println("post auth: " + auth.toString() );
  		Session session = Session.getInstance(props, auth);
+ 		System.out.println("session started" );
  		 //MimeMessage message = new MimeMessage(session);
  		sendEmail(session, toEmail,subject, sender,fromEmail, page + "?code=" + user.getVerificationCode() 
  		+ "&email=" + user.getEmail());
@@ -119,6 +122,7 @@ public class UserService {
     		String sender, String fromEmail, String body){
 		try
 	    {
+			System.out.println("session in send: " + session.toString() );
 	      MimeMessage msg = new MimeMessage(session);
 	      //set message headers
 	      msg.addHeader("Content-type", "text/HTML; charset=UTF-8");

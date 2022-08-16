@@ -432,6 +432,11 @@
 				    <input type="hidden" name="operand" value="${operand}">
 				    <input type="hidden" name="type" value="${type}">
 				 </c:when>
+				 <c:when test="${ field == 7}">
+				    <input type="hidden" name="operator" value="${operator}">
+				    <input type="hidden" name="operand" value="${operand}">
+				    <input type="hidden" name="type" value="${type}">
+				 </c:when>
 		</c:choose>
 		<c:if test="${ field != 4 }">
 			<button style="display:inline-block;margin-top:110px;">Download</button>					

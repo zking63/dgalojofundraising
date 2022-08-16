@@ -8,6 +8,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -29,12 +30,14 @@ import javax.swing.JFrame;
 
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.sl.usermodel.TextBox;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.DataFormat;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.RichTextString;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -45,10 +48,15 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFAbstractNum;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.apache.poi.xwpf.usermodel.XWPFNumbering;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTAbstractNum;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.CTLvl;
+import org.openxmlformats.schemas.wordprocessingml.x2006.main.STNumberFormat;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -144,6 +152,85 @@ public class WordUtil {
 				document.write(out);
 				out.close();
 				document.close();
+	}
+	public void ChairReport(List<EmailGroup> ChairReportEmails, HttpServletResponse response) 
+			throws IOException, InvalidFormatException{
+		System.out.println("word util");
+		XWPFDocument document = new XWPFDocument();
+		String output = "rest-with-spring.docx";
+		
+
+		//XWPFRun titleRun = title.createRun();
+		Integer rowcount = 0;
+		Integer cellcount = 0;
+		
+
+		
+		List <EmailGroup> emailgroups = ChairReportEmails;
+		
+		for (int i =0;i < emailgroups.size(); i++) {
+			CTAbstractNum cTAbstractNum = CTAbstractNum.Factory.newInstance();
+			cTAbstractNum.setAbstractNumId(BigInteger.valueOf(i));
+			  CTLvl cTLvl = cTAbstractNum.addNewLvl();
+			  cTLvl.setIlvl(BigInteger.valueOf(0)); // set indent level 0
+			  cTLvl.addNewNumFmt().setVal(STNumberFormat.BULLET);
+			  cTLvl.addNewLvlText().setVal("•");
+			  XWPFAbstractNum abstractNum = new XWPFAbstractNum(cTAbstractNum);
+
+			  XWPFNumbering numbering = document.createNumbering();
+
+			  BigInteger abstractNumID = numbering.addAbstractNum(abstractNum);
+
+			  BigInteger numID = numbering.addNum(abstractNumID);
+			XWPFParagraph type = document.createParagraph();
+			type.setAlignment(ParagraphAlignment.LEFT);
+			 type.setIndentFromLeft(1440 / 4); // indent from left 360 Twips = 1/4
+             // inch
+			 type.setIndentationHanging(1440 / 4);
+			type.setNumID(numID);
+			XWPFRun typeRun = type.createRun();
+			typeRun.setFontSize(11);
+			typeRun.setText(emailgroups.get(i).getEmailgroupName() + " — " + "$" + emailgroups.get(i).getGroupSumFormatted() + ", " + emailgroups.get(i).getGroupDonationCountFormatted() + " " + "gifts ");
+	
+			if (emailgroups.get(i).getTandemdonations() != 0) {
+				XWPFParagraph type2 = document.createParagraph();
+				type2.setAlignment(ParagraphAlignment.LEFT);
+				 type2.setIndentFromLeft(1440/2); // indent from left 360 Twips = 1/4
+                 // inch
+				 
+			
+				XWPFRun typeRun2 = type2.createRun();
+				typeRun2.setFontSize(10);
+				typeRun2.setText("•" + " Campaign: " + "$" + emailgroups.get(i).getTandemRevenueFormatted() + ", " + emailgroups.get(i).getTandemdonations() + " " + "gifts");
+				/*CTAbstractNum tandem = CTAbstractNum.Factory.newInstance();
+				tandem.setAbstractNumId(BigInteger.valueOf(0));
+				  CTLvl tandemline = tandem.addNewLvl();
+				
+				tandemline.setIlvl(BigInteger.valueOf(0)); // set indent level 0
+				  tandemline.addNewNumFmt().setVal(STNumberFormat.BULLET);
+				  tandemline.addNewLvlText().setVal("•");
+				  XWPFAbstractNum tandemNum = new XWPFAbstractNum(tandem);
+
+				  XWPFNumbering number = document.createNumbering();
+
+				  BigInteger tandemId = number.addAbstractNum(tandemNum);
+
+				  BigInteger tandemInt = number.addNum(tandemId);
+				  
+					XWPFParagraph tandemP = document.createParagraph();
+					tandemP.setAlignment(ParagraphAlignment.LEFT);
+					tandemP.setNumID(tandemInt);
+					tandemP.setIndentationLeft(100);
+					XWPFRun tandemRun = tandemP.createRun();
+					tandemRun.setFontSize(18);
+					tandemRun.setText("Campaign: " + "$" + emailgroups.get(i).getTandemRevenueFormatted() + ", " + emailgroups.get(i).getTandemdonations() + " " + "gifts");*/
+			}
+		}
+		ServletOutputStream out = response.getOutputStream();
+		//FileOutputStream out = new FileOutputStream(output);
+		document.write(out);
+		out.close();
+		document.close();
 	}
 
 	public void MonthlyTop10Bottom10(List<EmailGroup> top10GO, List<EmailGroup> top10revenue, List<EmailGroup> bottom10GO, List<EmailGroup> bottom10revenue, HttpServletResponse response) 

@@ -58,7 +58,7 @@ public class EmailRepositoryCustomImpl implements EmailRepositoryCustom{
 
         Path<String> emailPath = emails.get("emailName");
         System.out.println("emailPath name  " + emailPath);
-        List<Predicate> predicates = new ArrayList<>();
+        List<Predicate> predicates = new ArrayList<Predicate>();
         String name = "%" + names.get(0) + "%";
         for (int i = 0; i < names.size(); i++) {
         	if (i > 0) {
@@ -148,8 +148,8 @@ public class EmailRepositoryCustomImpl implements EmailRepositoryCustom{
       
         Predicate datePredicate =  cb.between(emails.<Date>get("Emaildate"), start, end);
        
-       List<Predicate> predicates = new ArrayList<>();
-        List<Predicate> finalPredicates = new ArrayList<>();
+       List<Predicate> predicates = new ArrayList<Predicate>();
+        List<Predicate> finalPredicates = new ArrayList<Predicate>();
         Predicate finalP = cb.equal(emails.get("committee"), committee);
 		Predicate equalPredicate = cb.or(predicates.toArray(new Predicate[predicates.size()]));
       // String finaloperand = "%" + operands.get(0) + "%";

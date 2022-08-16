@@ -70,7 +70,7 @@ public class ExcelUtil {
 	private CommitteeService cservice;
 	@Autowired
 	private EmailGroupService egservice;
-	
+	//check
 	public Double getRateFormatted(Double number) {
 		if (number == null) {
 			number = 0.0;

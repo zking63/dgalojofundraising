@@ -799,12 +799,12 @@ public class EmailService {
 			if (categories != null && categories.size() > 0 && categories.size() < 5) {
 				groupPath = emails.get("emailCategory");
 				Predicate categoryPredicate = cb.equal(groupPath, categories.get(0));
-		        List<Predicate> categorypreds = new ArrayList<>();
+		        List<Predicate> categorypreds = new ArrayList<Predicate>();
 				if (categories.size() > 1) {
 					for (int i = 0; i <categories.size(); i++) {
 						categoryPredicate = cb.equal(groupPath, categories.get(i));
 						if (categories.get(i).contentEquals("Other")) {
-							List<Predicate> otherPreds = new ArrayList<>();
+							List<Predicate> otherPreds = new ArrayList<Predicate>();
 							categoryPredicate = cb.notEqual(groupPath, "Fundraiser");
 							otherPreds.add(categoryPredicate);
 							categoryPredicate = cb.notEqual(groupPath, "Petition");
@@ -830,7 +830,7 @@ public class EmailService {
 				}
 				else {
 					if (categories.get(0).contentEquals("Other")) {
-						List<Predicate> otherPreds = new ArrayList<>();
+						List<Predicate> otherPreds = new ArrayList<Predicate>();
 						categoryPredicate = cb.notEqual(groupPath, "Fundraiser");
 						otherPreds.add(categoryPredicate);
 						categoryPredicate = cb.notEqual(groupPath, "Petition");
@@ -867,8 +867,8 @@ public class EmailService {
 
 	    
 	       
-	        List<Predicate> finalPredicates = new ArrayList<>();
-	        List<Predicate> temppreds = new ArrayList<>();
+	        List<Predicate> finalPredicates = new ArrayList<Predicate>();
+	        List<Predicate> temppreds = new ArrayList<Predicate>();
 	        Predicate finalP = cb.equal(emails.get("committee"), committee);
 			Predicate orPredicate = cb.or(predicates.toArray(new Predicate[predicates.size()]));
 			// String finaloperand = "%" + operands.get(0) + "%";
@@ -953,12 +953,12 @@ public class EmailService {
 			if (categories != null && categories.size() > 0 && categories.size() < 5) {
 				groupPath = emails.get("emailCategory");
 				Predicate categoryPredicate = cb.equal(groupPath, categories.get(0));
-		        List<Predicate> categorypreds = new ArrayList<>();
+		        List<Predicate> categorypreds = new ArrayList<Predicate>();
 				if (categories.size() > 1) {
 					for (int i = 0; i <categories.size(); i++) {
 						categoryPredicate = cb.equal(groupPath, categories.get(i));
 						if (categories.get(i).contentEquals("Other")) {
-							List<Predicate> otherPreds = new ArrayList<>();
+							List<Predicate> otherPreds = new ArrayList<Predicate>();
 							categoryPredicate = cb.notEqual(groupPath, "Fundraiser");
 							otherPreds.add(categoryPredicate);
 							categoryPredicate = cb.notEqual(groupPath, "Petition");
@@ -984,7 +984,7 @@ public class EmailService {
 				}
 				else {
 					if (categories.get(0).contentEquals("Other")) {
-						List<Predicate> otherPreds = new ArrayList<>();
+						List<Predicate> otherPreds = new ArrayList<Predicate>();
 						categoryPredicate = cb.notEqual(groupPath, "Fundraiser");
 						otherPreds.add(categoryPredicate);
 						categoryPredicate = cb.notEqual(groupPath, "Petition");

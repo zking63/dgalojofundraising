@@ -1629,7 +1629,7 @@ public class LojoController {
 			 String type = "Select";
 			 String operator = "Select";
 			 String operand = null;
-			 List<String> categories = new ArrayList<>();
+			 List<String> categories = new ArrayList<String>();
 			 model.addAttribute("message", message);
 			 model.addAttribute("startdateD", startdateD);
 			 model.addAttribute("field", field);

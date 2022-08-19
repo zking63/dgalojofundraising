@@ -232,8 +232,19 @@
 										<label for="input"> Open rate</label><br>	
 										<input type="checkbox" id="input" name="input" value="Click rate">
 										<label for="input"> Click rate</label><br>	
+
 									</div>
 									<div id="export-choices">
+										<input type="checkbox" id="input" name="input" value="firsttimedonors">
+										<label for="input"> First-time donors</label><br>	
+										<input type="checkbox" id="input" name="input" value="firsttimedonorsopens">
+										<label for="input"> First-time donors per open</label><br>
+										<input type="checkbox" id="input" name="input" value="firsttimedonorsclicks">
+										<label for="input"> First-time donors per click</label><br>	
+										<input type="checkbox" id="input" name="input" value="firstrevenue">
+										<label for="input"> First-time revenue</label><br>	
+										<input type="checkbox" id="input" name="input" value="averagefirstrevenue">	
+										<label for="input"> Average first-time revenue</label><br>	
 										<input type="checkbox" id="input" name="input" value="Unsubscribe rate">	
 										<label for="input"> Unsubscribe rate</label><br>	
 										<input type="checkbox" id="input" name="input" value="Bounce rate">
@@ -389,9 +400,23 @@
 										<input type="checkbox" id="input" name="input" value="Unsubscribe rate">	
 										<label for="input"> Unsubscribe rate</label><br>	
 										<input type="checkbox" id="input" name="input" value="Bounce rate">
-										<label for="input"> Bounce rate</label><br>			
+										<label for="input"> Bounce rate</label><br>		
+										
+
+	
 									</div>
 									<div id="export-choices">
+										<input type="checkbox" id="input" name="input" value="firsttimedonors">
+										<label for="input"> First-time donors</label><br>	
+										<input type="checkbox" id="input" name="input" value="firsttimedonorsopens">
+										<label for="input"> First-time donors per open</label><br>	
+										<input type="checkbox" id="input" name="input" value="firsttimedonorsclicks">
+										<label for="input"> First-time donors per click</label><br>	
+										<input type="checkbox" id="input" name="input" value="firstrevenue">
+										<label for="input"> First-time revenue</label><br>	
+										<input type="checkbox" id="input" name="input" value="averagefirstrevenue">	
+										<label for="input"> Average first-time revenue</label><br>	
+
 										<input type="checkbox" id="input" name="input" value="Clicks/opens">	
 										<label for="input"> Clicks per open</label><br>	
 										<input type="checkbox" id="input" name="input" value="Revenue">
@@ -439,7 +464,7 @@
 				 </c:when>
 		</c:choose>
 		<c:if test="${ field != 4 }">
-			<button style="display:inline-block;margin-top:110px;">Download</button>					
+			<button style="display:inline-block;margin-top:120px;">Download</button>					
 		</c:if>
 			
 	</form>

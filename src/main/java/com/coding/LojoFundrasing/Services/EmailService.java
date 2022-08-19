@@ -212,6 +212,7 @@ public class EmailService {
 		System.out.println("*****variant " + variant);
 		System.out.println("*****test " + testing);
 		System.out.println("*****category " + category);
+		System.out.println("*****first reve " + firstrevenue);
 		Emails email = null;
 		Boolean refcodesFiled = false;
 		Boolean committeeSetList = false;

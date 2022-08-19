@@ -961,6 +961,10 @@ public class ExcelUtil {
 									tandemrevColumn = header.getColumnIndex();
 									//System.out.println(headerValue);
 								}
+								else if (headerValue.contains("FIRST REVENUE")) {
+									System.out.println("                                    first rev col: " + header.getColumnIndex());
+									firstrevenueColumn = header.getColumnIndex();
+								}
 								else {
 									revenueColumn = header.getColumnIndex();
 								}
@@ -986,9 +990,6 @@ public class ExcelUtil {
 							}
 							if (headerValue.contains("FIRST DONORS")) {
 								firsttimedonorsColumn = header.getColumnIndex();
-							}
-							if (headerValue.contains("FIRST REVENUE")) {
-								firstrevenueColumn = header.getColumnIndex();
 							}
 						}
 						else if (row.getRowNum() > 0) {
@@ -1755,7 +1756,9 @@ public class ExcelUtil {
 							else if (cell.getColumnIndex() == firstrevenueColumn) {
 								
 								String amount1 = dataFormatter.formatCellValue(cell);
+								System.out.println("*****first reven in excel " + amount1);
 								firstrevenue = Double.parseDouble(amount1); 
+								System.out.println("*****first reven in excel2 " + firstrevenue);
 								if (cell.getColumnIndex() == noOfColumns - 1) {
 									eservice.setUpEmailsfromUpload(recipientList, excludedList, openers, bounces, unsubscribers, 
 											clicks, recipients, uploader, nameValue, refcode, refcode2, 
@@ -2103,8 +2106,10 @@ public class ExcelUtil {
 							else if (cell.getColumnIndex() == firsttimedonorsColumn) {
 								
 								String amount1 = dataFormatter.formatCellValue(cell);
+								System.out.println("*****first donors in excel " + amount1);
 								firsttimedonors = Integer.parseInt(amount1); 
 								if (cell.getColumnIndex() == noOfColumns - 1) {
+									System.out.println("*****first donors in excel last " + firsttimedonors);
 									eservice.setUpEmailsfromUpload(recipientList, excludedList, openers, bounces, unsubscribers, 
 											clicks, recipients, uploader, nameValue, refcode, refcode2, 
 											date, committee, sender, subject, category, content, tandemdonations, tandemrev, parentid, 
@@ -2140,6 +2145,7 @@ public class ExcelUtil {
 								}
 					}
 							else if (cell.getColumnIndex() == noOfColumns - 1) {
+								System.out.println("*****column " + cell.getColumnIndex());
 								eservice.setUpEmailsfromUpload(recipientList, excludedList, openers, bounces, unsubscribers, 
 										clicks, recipients, uploader, nameValue, refcode, refcode2, 
 										date, committee, sender, subject, category, content, tandemdonations, tandemrev, parentid, 
@@ -2313,6 +2319,12 @@ public class ExcelUtil {
         int totalrevCol = -1;
         int parentidCol = -1;
         int donationsforcalcCol = -1;
+        
+        int firsttimedonorsCol = -1;
+        int firsttimedonorsopensCol = -1;
+        int firsttimedonorsclicksCol = -1;
+        int firstrevenueCol = -1;
+        int averagefirstrevenueCol = -1;
     	
     	
     	this.emails = emails;
@@ -2402,6 +2414,26 @@ public class ExcelUtil {
             	if (input.get(i).equals("Click rate")) {
             		ClickrateCol = columnCount;
                     createCell(row, columnCount++, "Click rate", style); 
+            	}
+            	if (input.get(i).equals("firsttimedonors")) {
+            		firsttimedonorsCol = columnCount;
+                    createCell(row, columnCount++, "First-time donors", style);
+            	}
+            	if (input.get(i).equals("firsttimedonorsopens")) {
+            		firsttimedonorsopensCol = columnCount;
+                    createCell(row, columnCount++, "First-time donors/opens", style); 
+            	}
+            	if (input.get(i).equals("firsttimedonorsclicks")) {
+            		firsttimedonorsclicksCol = columnCount;
+                    createCell(row, columnCount++, "First-time donors/clicks", style); 
+            	}
+            	if (input.get(i).equals("firstrevenue")) {
+            		firstrevenueCol = columnCount;
+                    createCell(row, columnCount++, "First-time revenue", style); 
+            	}
+            	if (input.get(i).equals("averagefirstrevenue")) {
+            		averagefirstrevenueCol = columnCount;
+                    createCell(row, columnCount++, "Average first-time revenue", style); 
             	}
             	if (input.get(i).equals("Unsubscribe rate")) {
             		UnsubrateCol = columnCount;
@@ -2539,6 +2571,23 @@ public class ExcelUtil {
             if (columnCount == ClickrateCol) {
             	createCell(row, columnCount++, getRateFormatted(emails.get(i).getEmailclickRate()), bodyStyle);
             }
+            
+            if (columnCount == firsttimedonorsCol) {
+                createCell(row, columnCount++, emails.get(i).getFirsttimedonors(), bodyStyle);
+            }
+            if (columnCount == firsttimedonorsopensCol) {
+            	createCell(row, columnCount++, getRateFormatted(emails.get(i).getFirsttimedonorsOpens()), bodyStyle);
+            }
+            if (columnCount == firsttimedonorsclicksCol) {
+            	createCell(row, columnCount++, getRateFormatted(emails.get(i).getFirsttimedonorsClicks()), bodyStyle);
+            }
+            if (columnCount == firstrevenueCol) {
+            	createCell(row, columnCount++, emails.get(i).getFirstrevenue(), bodyStyle);
+            }
+            if (columnCount == averagefirstrevenueCol) {
+            	createCell(row, columnCount++, emails.get(i).getAveragefirstrevenue(), bodyStyle);
+            }
+            
             if (columnCount == UnsubrateCol) {
             	createCell(row, columnCount++, getRateFormatted(emails.get(i).getEmailunsubscribeRate()), bodyStyle);
             }
@@ -2646,6 +2695,12 @@ public class ExcelUtil {
         int totalrevCol = -1;
         int parentidCol = -1;
         int donationsforcalcCol = -1;
+        
+        int firsttimedonorsCol = -1;
+        int firsttimedonorsopensCol = -1;
+        int firsttimedonorsclicksCol = -1;
+        int firstrevenueCol = -1;
+        int averagefirstrevenueCol = -1;
     	
     	
     	//this.emailgroup = emailgroup;
@@ -2731,6 +2786,26 @@ public class ExcelUtil {
                 	if (input.get(i).equals("Bounce rate")) {
                 		BouncerateCol = columnCount;
                         createCell(row, columnCount++, "Bounce rate", style); 
+                	}
+                	if (input.get(i).equals("firsttimedonors")) {
+                		firsttimedonorsCol = columnCount;
+                        createCell(row, columnCount++, "First-time donors", style);
+                	}
+                	if (input.get(i).equals("firsttimedonorsopens")) {
+                		firsttimedonorsopensCol = columnCount;
+                        createCell(row, columnCount++, "First-time donors/opens", style); 
+                	}
+                	if (input.get(i).equals("firsttimedonorsclicks")) {
+                		firsttimedonorsclicksCol = columnCount;
+                        createCell(row, columnCount++, "First-time donors/clicks", style); 
+                	}
+                	if (input.get(i).equals("firstrevenue")) {
+                		firstrevenueCol = columnCount;
+                        createCell(row, columnCount++, "First-time revenue", style); 
+                	}
+                	if (input.get(i).equals("averagefirstrevenue")) {
+                		averagefirstrevenueCol = columnCount;
+                        createCell(row, columnCount++, "Average first-time revenue", style); 
                 	}
                 	if (input.get(i).equals("Clicks/opens")) {
                 		ClickOpenCol = columnCount;
@@ -2949,6 +3024,23 @@ public class ExcelUtil {
             if (columnCount == BouncerateCol) {
             	createCell(row, columnCount++, getRateFormatted(emailgroup.get(i).getGroupbounceRate()), bodyStyle);
             }
+            
+            if (columnCount == firsttimedonorsCol) {
+                createCell(row, columnCount++, emailgroup.get(i).getFirsttimedonors(), bodyStyle);
+            }
+            if (columnCount == firsttimedonorsopensCol) {
+            	createCell(row, columnCount++, getRateFormatted(emailgroup.get(i).getFirsttimedonorsOpens()), bodyStyle);
+            }
+            if (columnCount == firsttimedonorsclicksCol) {
+            	createCell(row, columnCount++, getRateFormatted(emailgroup.get(i).getFirsttimedonorsClicks()), bodyStyle);
+            }
+            if (columnCount == firstrevenueCol) {
+            	createCell(row, columnCount++, emailgroup.get(i).getFirstrevenue(), bodyStyle);
+            }
+            if (columnCount == averagefirstrevenueCol) {
+            	createCell(row, columnCount++, emailgroup.get(i).getAveragefirstrevenue(), bodyStyle);
+            }
+            
             if (columnCount == ClickOpenCol) {
             	createCell(row, columnCount++, getRateFormatted(emailgroup.get(i).getGroupclicksOpens()), bodyStyle);
             }

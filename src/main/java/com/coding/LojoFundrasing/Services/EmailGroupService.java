@@ -363,7 +363,7 @@ public class EmailGroupService {
 		emailgroup.setGroupdonationcount(groupdonationcount);
 		emailgroup.setGroupRecurringDonationCount(groupRecurringDonationCount);
 		emailgroup.setGroupRecurringRevenue(groupRecurringRevenue);
-		emailgroup.setFirstrevenue(averagefirstrevenue);
+		emailgroup.setFirstrevenue(firstrevenue);
 		updateEmailGroup(emailgroup);
 		
 		System.out.println("fundraising calculations in email group");

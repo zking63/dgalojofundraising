@@ -341,6 +341,7 @@ public class EmailService {
 				if (refcode == null || refcode.isEmpty() || refcode == " ") {
 					System.out.println("refcode2 != null && refcode == null");
 					email = findEmailbyRefcodeTWOandCommittee(refcode2, committee);
+				
 					refcodesFiled = true;
 				}
 				else {

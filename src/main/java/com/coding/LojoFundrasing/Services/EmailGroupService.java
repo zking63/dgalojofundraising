@@ -110,6 +110,7 @@ public class EmailGroupService {
 		if (email.getParentid() != null && email.getParentid() != "" 
 				&& email.getParentid() != " " && !email.getParentid().isEmpty()) {
 			emailgroup = egrepo.findGroupByParentId(email.getParentid(), committee_id);
+			System.out.println("GROUP PARENT ID: " + email.getParentid());
 		}
 		else {
 			if (egrepo.findGroupByRefcode2(email.getEmailRefcode2(), committee_id) != null) {

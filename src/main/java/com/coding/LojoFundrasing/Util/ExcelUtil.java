@@ -1014,14 +1014,14 @@ public class ExcelUtil {
 								{
 									subString = jtksearch.substring(jtkindex, jtksearch.length());
 									//System.out.println("                                                             substring: " + subString + ".");
-									if (subString.length() > 7) {
+									if (subString.length() > 8) {
 										//System.out.println("                                                            longer than 7 substring: " + subString.length() + ".");
-										c = subString.charAt(7);
-										finalindex = 7;
+										c = subString.charAt(8);
+										finalindex = 8;
 										//System.out.println("                                                             c 2: " + c + ".");
 										boolean isletter = Character.isLetter(c);
 										if (isletter == true) {
-											finalindex = 8;
+											finalindex = 9;
 										}
 									}
 									else {
